@@ -4,6 +4,9 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import service.HarvestService;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -32,7 +35,6 @@ public class DownloadHelper implements Runnable {
 
             HttpURLConnection repsonse = (HttpURLConnection) new URL(sourceUrl).openConnection();
             repsonse.setRequestMethod("GET");
-            repsonse.setRequestProperty("referer", referrer);
 
             repsonse.setConnectTimeout(10000);
             repsonse.setReadTimeout(10000);
@@ -44,9 +46,9 @@ public class DownloadHelper implements Runnable {
             ReadableByteChannel readChannel = Channels.newChannel(inputStream);
             FileOutputStream fileOS = new FileOutputStream(this.filepath);
             FileChannel writeChannel = fileOS.getChannel();
-
             writeChannel
                     .transferFrom(readChannel, 0, Long.MAX_VALUE);
+            repsonse.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
