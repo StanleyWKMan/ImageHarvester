@@ -2,6 +2,7 @@ package service.impl;
 
 import model.DownloadHelper;
 import model.gallery.AbstractGallery;
+import org.springframework.stereotype.Component;
 import service.DownloadService;
 import util.FileUtils;
 import util.FilenameUtils;
@@ -11,14 +12,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+@Component("DownloadService")
 public class DownloadServiceImpl implements DownloadService {
 
     private String rootpath = "G:/DLbackup/koikatsu/anime/onepiece";
 
-    public void setRootpath(String rootpath) {
+    @Override
+    public void setRootPath(String rootpath) {
         this.rootpath = rootpath;
     }
 
+    @Override
     public void downloadFromGalleries(List<? extends AbstractGallery> galleries) {
         FileUtils.createDirectories(rootpath);
         try {
