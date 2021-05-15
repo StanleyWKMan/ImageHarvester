@@ -15,4 +15,8 @@
         <property name="downloadService" ref="downloadService"/>
     </bean>
 
+    <bean id="view" class="view.MainView">
+
+    </bean>
+
 </beans>
