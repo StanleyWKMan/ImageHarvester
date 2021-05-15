@@ -30,7 +30,8 @@ public class RequestHandler {
 
     @GetMapping("/")
     public String hello() {
-        return danbooruController.greeting();
+        danbooruController.downloadFromQuery("https://danbooru.donmai.us/posts?tags=chernyyvo");
+        return "Done";
     }
 
 }

@@ -16,4 +16,8 @@
 
     </bean>
 
+    <bean id="downloadService" class="service.impl.DownloadServiceImpl">
+
+    </bean>
+
 </beans>

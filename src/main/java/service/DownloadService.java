@@ -8,7 +8,7 @@ public interface DownloadService {
 
     void downloadFromUrl(String url, String filename);
 
-    void setRootPath(String rootPath);
+    void setRootpath(String rootPath);
 
     void downloadFromGalleries(List<? extends AbstractGallery> galleries);
 }
