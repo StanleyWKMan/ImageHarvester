@@ -12,13 +12,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-@Component("DownloadService")
 public class DownloadServiceImpl implements DownloadService {
 
-    private String rootpath = "G:/DLbackup/koikatsu/anime/onepiece";
+    private String rootpath = "G:/space/danbooru/chernyyvo";
 
     @Override
-    public void setRootPath(String rootpath) {
+    public void setRootpath(String rootpath) {
         this.rootpath = rootpath;
     }
 

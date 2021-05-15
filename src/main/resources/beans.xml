@@ -12,6 +12,7 @@
 
     <bean id="danbooruController" class="controller.DanbooruController">
         <property name="harvestService" ref="danbooruHarvestService"/>
+        <property name="downloadService" ref="downloadService"/>
     </bean>
 
 </beans>
