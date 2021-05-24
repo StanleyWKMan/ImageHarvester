@@ -1,5 +1,7 @@
 package model;
 
+import service.impl.DownloadServiceImpl;
+
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -14,23 +16,22 @@ public class DownloadHelper implements Runnable {
 
     private final String sourceUrl;
 
-    private final String referrer;
+    private final String referrer = "";
 
-    public DownloadHelper(String filepath, String sourceUrl, String referrer) {
+    public DownloadHelper(String filepath, String sourceUrl) {
         this.filepath = filepath;
         this.sourceUrl = sourceUrl;
-        this.referrer = referrer;
     }
 
     @Override
     public void run() {
-        try {
 
+        try {
             HttpURLConnection repsonse = (HttpURLConnection) new URL(sourceUrl).openConnection();
             repsonse.setRequestMethod("GET");
 
-            repsonse.setConnectTimeout(10000);
-            repsonse.setReadTimeout(10000);
+            repsonse.setConnectTimeout(100000);
+            repsonse.setReadTimeout(100000);
             repsonse.connect();
 
             InputStream inputStream = repsonse.getInputStream();
@@ -43,6 +44,7 @@ public class DownloadHelper implements Runnable {
                     .transferFrom(readChannel, 0, Long.MAX_VALUE);
             repsonse.disconnect();
         } catch (Exception e) {
+            DownloadServiceImpl.addReDownloadList(this);
             e.printStackTrace();
         }
     }

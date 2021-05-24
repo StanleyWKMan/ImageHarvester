@@ -9,11 +9,15 @@ import java.util.Set;
 
 public interface HarvestService {
 
-    int TIMEOUT = 10000;
+    int TIMEOUT = 100000;
 
     String getNextPage(String url);
 
     String buildQueryUrl(Map<String, String> urlComponents);
+
+    default void login(String username, String password) {
+        System.out.println("Login not Available");
+    }
 
     default Document getDocument(String url) {
 
